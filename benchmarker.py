@@ -8,7 +8,8 @@ def avg(itr):
     return sum(itr)/float(len(itr))
 
 class Task:
-    def __init__(self, key, callback, humanName=None, runCount=None):
+    def __init__(self, key, callback, humanName=None, runCount=None, args=None,
+                 kwargs=None):
         """
         Construct an instance of a Task
         args:
@@ -20,6 +21,8 @@ class Task:
         if not callable(callback):
             raise RuntimeError("Callback is not a function.")
         self.times = []
+        self.args = args or []
+        self.kwargs = kwargs or {}
         self.key = key
         self.callback = callback
         self.runCount = runCount or DEFAULT_RUNCOUNT
